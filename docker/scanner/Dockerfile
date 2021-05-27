@@ -221,18 +221,18 @@ RUN go get -u github.com/gpmgo/gopm
 RUN go get github.com/Masterminds/glide
 USER root
 
-#### Important note ###
-#### uncomment for:
-####    Scala
-####    SBT
-####    Mix/ Hex/ Erlang/ Elixir
-####    dotnet/nuget cli's
-#RUN apt-get update && \
-#	apt-get install -y --force-yes build-essential && \
-#	apt-get install -y --force-yes zlib1g-dev libssl-dev libreadline-dev libyaml-dev libxml2-dev libxslt-dev && \
-#	apt-get clean && \
-#	rm -rf /var/lib/apt/lists/* && \
-#	rm -rf /tmp/*
+### Important note ###
+### uncomment for:
+###    Scala
+###    SBT
+###    Mix/ Hex/ Erlang/ Elixir
+###    dotnet/nuget cli's
+RUN apt-get update && \
+	apt-get install -y --force-yes build-essential && \
+	apt-get install -y --force-yes zlib1g-dev libssl-dev libreadline-dev libyaml-dev libxml2-dev libxslt-dev && \
+	apt-get clean && \
+	rm -rf /var/lib/apt/lists/* && \
+	rm -rf /tmp/*
 
 #### Install Scala
 #RUN wget https://downloads.lightbend.com/scala/${SCALA_VERSION}/scala-${SCALA_VERSION}.deb --no-check-certificate && \
