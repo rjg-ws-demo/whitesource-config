@@ -8,6 +8,6 @@ echo $WSS
 
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 echo $DIR
-cp $DIR/docker-compose.yaml $WSS/../docker-compose.yaml
-cp $DIR/conf/prop.json $WSS/../conf/prop.json
+cp $DIR/docker-compose.yaml $WSS/docker-compose.yaml
+cp $DIR/conf/prop.json $WSS/conf/prop.json
 cp $DIR/scanner/Dockerfile $WSS/wss-scanner/docker/Dockerfile
