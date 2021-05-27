@@ -3,7 +3,7 @@ services:
 
   remediate:
     build: 
-      context: ./v21.5.1/wss-remediate/docker
+      context: ./remediate
     image: wss-remediate:21.5.1
     container_name: wss-remediate 
     ports:
@@ -25,7 +25,7 @@ services:
 
   app:
     build: 
-      context: ./v21.5.1/wss-ghe-app/docker
+      context: ./app
     image: wss-ghe-app:21.5.1
     container_name: wss-app
     ports:
@@ -45,7 +45,7 @@ services:
     
   scanner:
     build: 
-      context: ./v21.5.1/wss-scanner/docker
+      context: ./scanner
     image: wss-scanner:21.4.2
     container_name: wss-scanner
     ports:
