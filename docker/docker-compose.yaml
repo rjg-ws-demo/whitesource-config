@@ -11,11 +11,11 @@ services:
     volumes: 
       - ./conf/prop.json:/etc/usr/local/whitesource/conf/prop.json:ro
       - ./r/tmp:/tmp
-      networks:
-        demo_bridge:
-          aliases:
-            - remediate-server
-      environment: 
+    networks:
+      demo_bridge:
+        aliases:
+          - remediate-server
+    environment: 
       - LOG_LEVEL=debug
     logging:
       driver: local
