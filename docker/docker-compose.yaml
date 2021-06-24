@@ -4,15 +4,15 @@ services:
   remediate:
     build: 
       context: ./wss-remediate/docker
-    image: wss-remediate:21.5.1
+    image: wss-remediate:${TAG}
     container_name: wss-remediate 
     ports:
       - "8080:8080"
     volumes: 
       - ./conf/prop.json:/etc/usr/local/whitesource/conf/prop.json:ro
-      - ./r/tmp:/tmp
+      - ./r/tmp:/tmp:rw
     networks:
-      demo_bridge:
+      ws_demo_bridge:
         aliases:
           - remediate-server
     environment: 
@@ -26,7 +26,7 @@ services:
   app:
     build: 
       context: ./wss-ghe-app/docker
-    image: wss-ghe-app:21.5.1
+    image: wss-ghe-app:${TAG}
     container_name: wss-app
     ports:
       - "9494:9494"
@@ -34,7 +34,7 @@ services:
     volumes: 
       - ./conf:/etc/usr/local/whitesource/conf/:ro
     networks: 
-      - demo_bridge
+      - ws_demo_bridge
     depends_on: 
       - remediate
     logging:
@@ -46,15 +46,15 @@ services:
   scanner:
     build: 
       context: ./wss-scanner/docker
-    image: wss-scanner:21.4.2
+    image: wss-scanner:${SCANNER_TAG}
     container_name: wss-scanner
     ports:
       - "9393:9393"
     volumes: 
       - ./conf:/etc/usr/local/whitesource/conf/:ro
-      - ./s/tmp:/tmp
+      - ./s/tmp/unified-agent-log.txt:/tmp/unified-agent-log.txt:rw
     networks: 
-      - demo_bridge
+      - ws_demo_bridge
     restart: always
     logging:
       driver: local
@@ -63,4 +63,4 @@ services:
         max-file: "5"
         
 networks: 
-  demo_bridge:
+  ws_demo_bridge:
